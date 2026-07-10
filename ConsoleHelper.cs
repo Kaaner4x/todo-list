@@ -1,4 +1,4 @@
-﻿namespace ToDoList
+namespace ToDoList
 {
     class ConsoleHelper
     {
@@ -9,7 +9,13 @@
                 WriteColored(message, color, false);
                 string? text = Console.ReadLine();
 
-                if (text?.Trim().ToLower() == "clear")
+                if (text == null)
+                {
+                    WriteColored("\n ⚠️ Input stream closed. Exiting application.", ConsoleColor.Red);
+                    Environment.Exit(0);
+                }
+
+                if (text.Trim().ToLower() == "clear")
                 {
                     ClearScreen();
                     continue;
@@ -66,16 +72,43 @@
 
         public static void ClearScreen()
         {
-            Console.Clear();
-            Console.Write("\x1b[3J");
+            try
+            {
+                Console.Clear();
+                Console.Write("\x1b[3J");
+            }
+            catch (IOException)
+            {
+                // Ignore when run in environments without an interactive console
+            }
         }
 
         public static void WaitingScreen(ConsoleColor color = ConsoleColor.DarkYellow)
         {
-            Console.CursorVisible = false;
+            try
+            {
+                Console.CursorVisible = false;
+            }
+            catch (Exception) { }
+
             WriteColored("\n⏳ Press any key to continue ...", color);
-            Console.ReadKey(intercept: true);
-            Console.CursorVisible = true;
+
+            try
+            {
+                Console.ReadKey(intercept: true);
+            }
+            catch (Exception)
+            {
+                // Fallback if input is redirected: pause briefly
+                Thread.Sleep(1000);
+            }
+
+            try
+            {
+                Console.CursorVisible = true;
+            }
+            catch (Exception) { }
+
             ClearScreen();
         }
     }

@@ -1,9 +1,7 @@
-﻿namespace ToDoList.Entity
+namespace ToDoList.Entity
 {
     public class Data
     {
-        private static Random _random = new Random();
-
         public List<Note> Notes { get; set; }
 
         public Data()
@@ -12,7 +10,7 @@
             {
                 new Note()
                 {
-                    NoteID = _random.Next(1000),
+                    NoteID = 1,
                     Title = "Example",
                     Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt " +
                     "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
@@ -23,6 +21,11 @@
                     Status = true
                 }
             };
+        }
+
+        public int GetNextId()
+        {
+            return Notes.Count > 0 ? Notes.Max(n => n.NoteID) + 1 : 1;
         }
     }
 }

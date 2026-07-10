@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using ToDoList.Entity;
 using ToDoList.Service;
 
@@ -30,9 +30,53 @@ namespace ToDoList
 
                     case 2:
                         View.ViewNotes(_data);
-                        int id = ConsoleHelper.GetInput<int>("\n 👉 Please enter a note id you want to review: ");
+                        int addId = ConsoleHelper.GetInput<int>("\n 👉 Please enter a note id you want to review: ");
                         ConsoleHelper.ClearScreen();
-                        Review.ReviewNote(_data, id);
+                        Review.ReviewNote(_data, addId);
+                        break;
+
+                    case 3:
+                        AddNote.Add(_data);
+                        Message.ShowMessage("✅ Your transaction has been completed successfully", ConsoleColor.Green);
+                        break;
+
+                    case 4:
+                        View.ViewNotes(_data);
+                        int updateId = ConsoleHelper.GetInput<int>("\n 👉 Please enter a note id you want to update: ");
+                        ConsoleHelper.ClearScreen();
+                        UpdateNote.Update(_data, updateId);
+                        break;
+
+                    case 5:
+                        View.ViewNotes(_data);
+                        int deleteId = ConsoleHelper.GetInput<int>("\n 👉 Please enter a note id you want to delete: ");
+                        ConsoleHelper.ClearScreen();
+                        
+                        var noteToDelete = _data.Notes.FirstOrDefault(x => x.NoteID == deleteId);
+                        if (noteToDelete == null)
+                        {
+                            Message.ShowMessage($"⚠️ Note with ID {deleteId} was not found.", ConsoleColor.Red);
+                        }
+                        else
+                        {
+                            ConsoleHelper.WriteColored("🗑️ You are about to delete the following note:\n", ConsoleColor.Yellow);
+                            ConsoleHelper.WriteColored($" Note ID      : {noteToDelete.NoteID}");
+                            ConsoleHelper.WriteColored($" Title        : {noteToDelete.Title}");
+                            ConsoleHelper.WriteColored($" Content      : {noteToDelete.Content}");
+                            ConsoleHelper.WriteColored($" Created Date : {noteToDelete.CreatedDate}");
+                            ConsoleHelper.WriteColored(new string('-', 40));
+                            
+                            string confirm = ConsoleHelper.GetInput<string>("\n⚠️ Are you sure you want to delete this note? (y/n): ");
+                            if (confirm.Trim().ToLower() == "y")
+                            {
+                                DeleteNote.Delete(_data, deleteId);
+                                Message.ShowMessage("✅ Your transaction has been completed successfully", ConsoleColor.Green);
+                            }
+                            else
+                            {
+                                Message.ShowMessage("❌ Deletion cancelled.", ConsoleColor.Yellow);
+                            }
+                        }
                         break;
 
                     case 6:
