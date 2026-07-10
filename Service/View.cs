@@ -1,0 +1,30 @@
+﻿using ToDoList.Entity;
+
+namespace ToDoList.Service
+{
+    public class View
+    {
+        public static void ViewNotes(Data data)
+        {
+            short number = 1;
+
+            foreach (var item in data.Notes)
+            {
+                string statusText = item.Status ? "Done" : "Not Done";
+                ConsoleColor statusColor = item.Status ? ConsoleColor.Green : ConsoleColor.Red;
+
+                Console.WriteLine($"{number} -> Note ID      : {item.NoteID}\n" +
+                                  $"{new string(' ', 5)}Title        : {item.Title}\n" +
+                                  $"{new string(' ', 5)}Created Date : {item.CreatedDate}");
+
+                Console.Write($"{new string(' ', 5)}Status       : ");
+                Console.ForegroundColor = statusColor;
+                Console.WriteLine(statusText);
+                Console.ResetColor();
+
+                Console.WriteLine("------------------------------------------");
+                number++;
+            }
+        }
+    }
+}

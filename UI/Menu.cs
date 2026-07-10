@@ -5,7 +5,7 @@
         public static void MainMenu()
         {
             var mainMenuItems = new (string text, ConsoleColor Color)[]
-   {
+            {
             ( " 📓 Main Menu", ConsoleColor.White),
             ( $" {new string(' ',40)}",ConsoleColor.White),
             ( " 1. View all notes", ConsoleColor.White),

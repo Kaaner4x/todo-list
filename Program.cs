@@ -6,7 +6,8 @@ namespace ToDoList
 {
     public class Program
     {
-        static Data data = new Data();
+        static Data _data = new Data();
+
         static void Main(string[] args)
         {
             Console.InputEncoding = Encoding.UTF8;
@@ -23,19 +24,36 @@ namespace ToDoList
 
                 switch (act)
                 {
+                    case 1:
+                        View.ViewNotes(_data);
+                        break;
+
+                    case 2:
+                        View.ViewNotes(_data);
+                        int id = ConsoleHelper.GetInput<int>("\n 👉 Please enter a note id you want to review: ");
+                        ConsoleHelper.ClearScreen();
+                        Review.ReviewNote(_data, id);
+                        break;
+
                     case 6:
                         ConsoleHelper.ClearScreen();
                         break;
+
                     case 7:
-                        Exit.ExitMenu();
+                        isWork = Exit.ExitMenu();
                         break;
+
                     default:
                         ConsoleHelper.WriteColored(" ❗ Invalid Operations", ConsoleColor.Red);
                         break;
                 }
-                ConsoleHelper.WaitingScreen();
+
+                if (isWork)
+                {
+                    ConsoleHelper.WaitingScreen();
+                }
             }
-            while (isWork == true);
+            while (isWork);
         }
     }
 }
