@@ -4,6 +4,23 @@
     "Title": "Example",
     "Content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "CreatedDate": "2026-08-25T11:29:22.4384355+03:00",
-    "Status": true
+    "Status": true,
+    "Deadline": "2026-09-01T16:15:51.7797522+03:00"
+  },
+  {
+    "NoteID": 2,
+    "Title": "deneme1",
+    "Content": "deneme yap\u0131yorum vol2",
+    "CreatedDate": "2026-08-25T16:16:13.5379729+03:00",
+    "Status": false,
+    "Deadline": "2026-05-05T00:00:00"
+  },
+  {
+    "NoteID": 3,
+    "Title": "deneme vol 2 \u00FC",
+    "Content": "deneme yap\u0131yorum vol 3",
+    "CreatedDate": "2026-08-25T16:16:31.5451043+03:00",
+    "Status": false,
+    "Deadline": "2026-09-01T16:16:31.5450547+03:00"
   }
 ]
