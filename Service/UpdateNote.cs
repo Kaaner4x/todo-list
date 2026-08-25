@@ -35,15 +35,18 @@ namespace ToDoList.Service
                     case 1:
                         string newTitle = ConsoleHelper.GetInput<string>(" 👉 Enter new Title: ");
                         note.Title = newTitle;
+                        PersistenceService.Save(data);
                         Message.ShowMessage("✅ Title updated successfully!", ConsoleColor.Green);
                         break;
                     case 2:
                         string newContent = ConsoleHelper.GetInput<string>(" 👉 Enter new Content: ");
                         note.Content = newContent;
+                        PersistenceService.Save(data);
                         Message.ShowMessage("✅ Content updated successfully!", ConsoleColor.Green);
                         break;
                     case 3:
                         note.Status = !note.Status;
+                        PersistenceService.Save(data);
                         Message.ShowMessage($"✅ Status toggled successfully! New status: {(note.Status ? "Done" : "Not Done")}", ConsoleColor.Green);
                         break;
                     case 4:

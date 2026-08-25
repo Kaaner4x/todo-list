@@ -12,7 +12,8 @@ namespace ToDoList
         {
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
-
+            
+            PersistenceService.Load(_data);
             bool isWork = true;
 
             do

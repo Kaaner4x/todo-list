@@ -11,7 +11,14 @@ namespace ToDoList.Service
             {
                 return false;
             }
-            return data.Notes.Remove(note);
+            bool isDeleted  =  data.Notes.Remove(note);
+            if (isDeleted)
+            {
+                PersistenceService.Save(data);
+            }
+            return isDeleted;
         }
+        
     }
+    
 }
