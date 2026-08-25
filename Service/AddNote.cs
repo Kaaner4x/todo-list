@@ -20,6 +20,7 @@ namespace ToDoList.Service
             };
 
             data.Notes.Add(note);
+            PersistenceService.Save(data);
         }
     }
 }
